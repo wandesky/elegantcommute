@@ -6,11 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.annotation.NonNull;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private TextView anotherTextMessage;
     private String s = "oya";
+
+    Intent create_intent;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -23,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
                     anotherTextMessage.setText(s);
                     return true;
                 case R.id.navigation_dashboard:
+                    //Start create ride activity
+//                    EditText editText = (EditText) findViewById(R.id.editText);
+//                    String message = editText.getText().toString();
+//                    create_intent.putExtra(EXTRA_MESSAGE, message);
+//                    startActivity(intent);
+                    startActivity(create_intent);
+
+
                     mTextMessage.setText(R.string.title_create);
                     return true;
                 case R.id.navigation_notifications:
@@ -35,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+         create_intent = new Intent(this, CreateRide.class);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
